@@ -1,0 +1,16 @@
+class Solution:
+    def isValid(self, s):
+        stack = []
+        pairs = {')': '(', '}': '{', ']': '['}
+
+        for char in s:
+            if char in pairs.values():      # if it's an opening bracket
+                stack.append(char)
+            elif char in pairs:             # if it's a closing bracket
+                if not stack or stack[-1] != pairs[char]:
+                    return False
+                stack.pop()
+            else:
+                return False                 # invalid character
+
+        return not stack
